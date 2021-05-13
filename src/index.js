@@ -38,19 +38,19 @@ fetch("http://localhost:3000/pups")
                 } else {
                     mainDogButton.innerText = "Good Dog!"
                 }
-                // fetch("localhost:3000/pups/${isGoodDog}", {
-                //     method: "PATCH",
-                //     headers: {
-                //         "Content-type": "Application.json"
-                //     },
-                //     body: JSON.stringify({
-                //         isGoodDog: trueOrFalse
-                //     })
-                // })
-                // .then(res => res.json())
-                // .then((updatedButton) => {
-                //     mainDogButton.innerText = "Bad Dog!"
-                // })
+                fetch(`http://localhost:3000/pups/${dogObj.id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-type": "Application/json"
+                    },
+                    body: JSON.stringify({
+                        isGoodDog: !dogObj.isGoodDog
+                    })
+                })
+                .then(res => res.json())
+                .then((updatedDog) => {
+                   console.log(updatedDog.isGoodDog)
+                })
             })
         })
     })
